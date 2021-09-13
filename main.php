@@ -14,4 +14,15 @@
     ];
 
     $store = new WeaponStore($weapons);
-    $store->displayWeapons();
+
+    while(true){
+        $store->displayWeapons();
+
+        $selection = readline("Choose a weapon to buy (Q to exit): ");
+        if(strtoupper($selection) === "Q") die("Bye!");
+
+        $weapons = $store->buyWeapon((int) $selection);
+        echo "Thank you for the purchase\n";
+
+        if(empty($weapons)) die("Shop is empty!");
+    }

@@ -20,4 +20,15 @@
                      "Trajectory: {$weapon->trajectory()}\n";
             }
         }
+
+        public function buyWeapon(int $selection): ?array
+        {
+            if(isset($this->weapons[$selection])){
+                unset($this->weapons[$selection]);
+                $this->weapons = array_values($this->weapons);
+                return $this->weapons;
+            }
+            echo "Wrong input!\n";
+            return null;
+        }
     }
