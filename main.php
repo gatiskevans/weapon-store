@@ -11,7 +11,7 @@ require_once 'Classes/Paypal.php';
 require_once 'Classes/Visa.php';
 require_once 'Classes/Cash.php';
 
-$user = new Customer("John Doe", 1000, "JohnDoe", "johndoe@gmail.com");
+$user = new Customer("John Doe", 1000, "JohnDoe", "johndoe@gmail.com", ['A', 'C', 'Z']);
 
 $weapons = [
     new Pistol("Beretta M9", "A", 200),
@@ -24,7 +24,7 @@ $store = new WeaponStore($weapons);
 
 
 while (true) {
-    echo "Hello {$user->getName()}. Your cash: \${$user->getCash()}\n";
+    echo "Hello {$user->getName()}. Licenses [{$user->listLicenses()}] Your cash: \${$user->getCash()}\n";
     $store->displayWeapons();
 
     $selection = readline("Choose a weapon to buy (Q to exit): ");

@@ -3,13 +3,13 @@
     class Weapons
     {
         protected string $name;
-        protected string $license;
+        protected array $license;
         protected int $price;
 
-        public function __construct(string $name, string $licence, int $price)
+        public function __construct(string $name, string $licences, int $price)
         {
             $this->name = $name;
-            $this->license = $licence;
+            $this->license[] = $licences;
             $this->price = $price;
         }
 
@@ -18,9 +18,14 @@
             return $this->name;
         }
 
-        public function getLicense(): string
+        public function getLicense(): array
         {
             return $this->license;
+        }
+
+        public function listLicenses(): string
+        {
+            return join(", ", $this->license);
         }
 
         public function trajectory(): int

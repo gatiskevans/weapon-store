@@ -2,18 +2,10 @@
 
     class Rifle extends Weapons
     {
-
-        private string $heavyArms;
-
-        public function __construct(string $name, string $license, string $heavyArms, int $price)
+        public function __construct(string $name, string $licenses, string $heavyArms, int $price)
         {
-            parent::__construct($name, $license, $price);
-            $this->heavyArms = $heavyArms;
-        }
-
-        public function getLicense(): string
-        {
-            return $this->license . ", " . $this->heavyArms;
+            parent::__construct($name, $licenses, $price);
+            $this->license[] = $heavyArms;
         }
 
         public function trajectory(): int

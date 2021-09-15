@@ -6,13 +6,15 @@ class Customer
     private int $cash;
     private string $username;
     private string $email;
+    private array $licenses;
 
-    public function __construct(string $name, int $cash, string $username, string $email)
+    public function __construct(string $name, int $cash, string $username, string $email, array $licenses)
     {
         $this->name = $name;
         $this->cash = $cash;
         $this->username = $username;
         $this->email = $email;
+        $this->licenses = $licenses;
     }
 
     public function getName(): string
@@ -38,5 +40,15 @@ class Customer
     public function setCash(int $cash): void
     {
         $this->cash -= $cash;
+    }
+
+    public function getLicenses(): array
+    {
+        return $this->licenses;
+    }
+
+    public function listLicenses(): string
+    {
+        return join(", ", $this->licenses);
     }
 }

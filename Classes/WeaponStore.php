@@ -15,7 +15,7 @@ class WeaponStore
         foreach ($this->weapons as $index => $weapon) {
             echo "$index | " .
                 "{$weapon->getName()} - " .
-                "Licenses: [{$weapon->getLicense()}] " .
+                "Licenses: [{$weapon->listLicenses()}] " .
                 "Price: \${$weapon->getPrice()} " .
                 "Trajectory: {$weapon->trajectory()}\n";
         }
@@ -23,6 +23,13 @@ class WeaponStore
 
     public function buyWeapon(int $selection, Customer $user): ?array
     {
+        $count = 0;
+        foreach($user->getLicenses() as $license){
+            if(in_array($license, $this->weapons[$selection]->getLicense())) $count++;
+        }
+
+        if($count !== count($this->weapons[$selection]->getLicense())) die("You don't have the license!");
+
         if (isset($this->weapons[$selection])) {
             if($this->weapons[$selection]->getPrice() <= $user->getCash()){
                 $user->setCash($this->weapons[$selection]->getPrice());
