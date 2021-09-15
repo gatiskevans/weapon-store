@@ -16,13 +16,15 @@ class WeaponStore
             echo "$index | " .
                 "{$weapon->getName()} - " .
                 "Licenses: [{$weapon->getLicense()}] " .
+                "Price: \${$weapon->getPrice()} " .
                 "Trajectory: {$weapon->trajectory()}\n";
         }
     }
 
-    public function buyWeapon(int $selection): ?array
+    public function buyWeapon(int $selection, User $user): ?array
     {
         if (isset($this->weapons[$selection])) {
+            $user->setCash($this->weapons[$selection]->getPrice());
             unset($this->weapons[$selection]);
             $this->weapons = array_values($this->weapons);
             return $this->weapons;

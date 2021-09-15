@@ -13,10 +13,10 @@ require_once 'Classes/Cash.php';
 $user = new User("John Doe", 1000, "JohnDoe", "johndoe@gmail.com");
 
 $weapons = [
-    new Pistol("Beretta M9", "A"),
-    new Pistol("2mm Kolibri", "C"),
-    new Shotgun("Benelli M3", "Z"),
-    new Rifle("AK47", "B", "Heavy Arms")
+    new Pistol("Beretta M9", "A", 200),
+    new Pistol("2mm Kolibri", "C", 450),
+    new Shotgun("Benelli M3", "Z", 700),
+    new Rifle("AK47", "B", "Heavy Arms", 1000)
 ];
 
 $store = new WeaponStore($weapons);
@@ -28,7 +28,6 @@ while (true) {
 
     $selection = readline("Choose a weapon to buy (Q to exit): ");
     if (strtoupper($selection) === "Q") die("Bye!");
-    if ($store->buyWeapon($selection) === null) continue;
 
     echo "0 | Paypal\n";
     echo "1 | Visa\n";
@@ -37,7 +36,7 @@ while (true) {
     $choosePayment = readline("Choose your payment method (0-2): ");
     $store->choosePayment($choosePayment, $user);
 
-    $weapons = $store->buyWeapon((int)$selection);
+    if ($store->buyWeapon($selection, $user) === null) continue;
     echo "Thank you for the purchase\n";
 
     if (empty($weapons)) die("Shop is empty!");

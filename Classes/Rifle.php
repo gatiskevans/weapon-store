@@ -5,9 +5,9 @@
 
         private string $heavyArms;
 
-        public function __construct(string $name, string $licence, string $heavyArms)
+        public function __construct(string $name, string $license, string $heavyArms, int $price)
         {
-            parent::__construct($name, $licence);
+            parent::__construct($name, $license, $price);
             $this->heavyArms = $heavyArms;
         }
 
