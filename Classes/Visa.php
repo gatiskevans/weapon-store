@@ -2,9 +2,9 @@
 
 class Visa extends PaymentMethods
 {
-    private User $user;
+    private Customer $user;
 
-    public function __construct(User $user)
+    public function __construct(Customer $user)
     {
         $this->user = $user;
     }

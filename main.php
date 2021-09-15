@@ -5,13 +5,13 @@ require_once 'Classes/Pistol.php';
 require_once 'Classes/Shotgun.php';
 require_once 'Classes/WeaponStore.php';
 require_once 'Classes/Rifle.php';
-require_once 'Classes/User.php';
+require_once 'Classes/Customer.php';
 require_once 'Classes/PaymentMethods.php';
 require_once 'Classes/Paypal.php';
 require_once 'Classes/Visa.php';
 require_once 'Classes/Cash.php';
 
-$user = new User("John Doe", 1000, "JohnDoe", "johndoe@gmail.com");
+$user = new Customer("John Doe", 1000, "JohnDoe", "johndoe@gmail.com");
 
 $weapons = [
     new Pistol("Beretta M9", "A", 200),

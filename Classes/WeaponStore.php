@@ -21,7 +21,7 @@ class WeaponStore
         }
     }
 
-    public function buyWeapon(int $selection, User $user): ?array
+    public function buyWeapon(int $selection, Customer $user): ?array
     {
         if (isset($this->weapons[$selection])) {
             $user->setCash($this->weapons[$selection]->getPrice());
@@ -33,7 +33,7 @@ class WeaponStore
         return null;
     }
 
-    public function choosePayment(string $selection, User $user): void
+    public function choosePayment(string $selection, Customer $user): void
     {
         if(!class_exists($selection)) die("This method doesn't exist!");
         $selection = new $selection($user);
