@@ -33,26 +33,10 @@ class WeaponStore
         return null;
     }
 
-    public function choosePayment(int $selection, User $user): void
+    public function choosePayment(string $selection, User $user): void
     {
-        switch ($selection) {
-            case 0:
-                $paypal = new Paypal($user);
-                $paypal->enterAge();
-                $paypal->enterUsername();
-                break;
-            case 1:
-                $visa = new Visa($user);
-                $visa->enterEmail();
-                $visa->enterAge();
-                break;
-            case 2:
-                $cash = new Cash($user);
-                $cash->enterAge();
-                break;
-            default:
-                echo "Something's Wrong!\n";
-                break;
-        }
+        if(!class_exists($selection)) die("This method doesn't exist!");
+        $selection = new $selection($user);
+        $selection->enterCredentials();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Visa
+class Visa extends PaymentMethods
 {
     private User $user;
 
@@ -9,16 +9,15 @@ class Visa
         $this->user = $user;
     }
 
-    public function enterEmail(): void
+    public function enterCredentials(): void
     {
         $prompt = readline("Enter email: ");
         $prompt === $this->user->getEmail() ?: die("That's not your email");
-    }
 
-    public function enterAge(): void
-    {
+        $prompt = readline("Enter username: ");
+        $prompt === $this->user->getUsername() ?: die("That's not your username");
+
         $prompt = (int)readline("Enter your age: ");
         $prompt >= 18 ?: die("You're too young to buy guns!");
     }
-
 }

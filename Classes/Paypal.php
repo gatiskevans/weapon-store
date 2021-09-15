@@ -1,6 +1,6 @@
 <?php
 
-class Paypal
+class Paypal extends PaymentMethods
 {
     private User $user;
 
@@ -9,16 +9,12 @@ class Paypal
         $this->user = $user;
     }
 
-    public function enterUsername(): void
+    public function enterCredentials(): void
     {
         $prompt = readline("Enter username: ");
         $prompt === $this->user->getUsername() ?: die("That's not your username");
-    }
 
-    public function enterAge(): void
-    {
         $prompt = (int)readline("Enter your age: ");
         $prompt >= 18 ?: die("You're too young to buy guns!");
     }
-
 }
