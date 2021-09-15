@@ -24,7 +24,12 @@ class WeaponStore
     public function buyWeapon(int $selection, Customer $user): ?array
     {
         if (isset($this->weapons[$selection])) {
-            $user->setCash($this->weapons[$selection]->getPrice());
+            if($this->weapons[$selection]->getPrice() <= $user->getCash()){
+                $user->setCash($this->weapons[$selection]->getPrice());
+            } else {
+                echo "Not enough money!\n";
+                return null;
+            }
             unset($this->weapons[$selection]);
             $this->weapons = array_values($this->weapons);
             return $this->weapons;
