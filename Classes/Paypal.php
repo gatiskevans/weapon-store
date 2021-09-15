@@ -9,21 +9,16 @@ class Paypal
         $this->user = $user;
     }
 
-    public function enterUsername()
+    public function enterUsername(): void
     {
         $prompt = readline("Enter username: ");
         $prompt === $this->user->getUsername() ?: die("That's not your username");
     }
 
-    public function enterAge()
+    public function enterAge(): void
     {
         $prompt = (int)readline("Enter your age: ");
         $prompt >= 18 ?: die("You're too young to buy guns!");
-    }
-
-    private function makeTransaction()
-    {
-
     }
 
 }
