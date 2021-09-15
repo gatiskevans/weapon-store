@@ -18,11 +18,6 @@
             return $this->name;
         }
 
-        public function getLicense(): array
-        {
-            return $this->license;
-        }
-
         public function listLicenses(): string
         {
             return join(", ", $this->license);
@@ -37,5 +32,4 @@
         {
             return $this->price;
         }
-
     }
